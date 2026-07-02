@@ -22,5 +22,14 @@ class AdminSeeder extends Seeder
                 'password' => Hash::make('rei123'),
             ]
         );
+
+        User::updateOrCreate(
+            ['username' => 'sungut'],
+            [
+                'name' => 'Sungut Admin',
+                'email' => 'sungut@admin.com',
+                'password' => Hash::make('sungut123'),
+            ]
+        );
     }
 }

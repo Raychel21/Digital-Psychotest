@@ -11,7 +11,13 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        return view('admin.dashboard');
+        $stats = [
+            'total_tokens' => Token::count(),
+            'available_tokens' => Token::where('status', 'available')->count(),
+            'used_tokens' => Token::where('status', 'used')->count(),
+            'total_participants' => Participant::whereNotNull('completed_at')->count(),
+        ];
+        return view('admin.dashboard', compact('stats'));
     }
 
     public function tokens()
