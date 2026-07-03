@@ -22,3 +22,12 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+/.claude/*
+!/.claude/settings.json
+!/.claude/rules/
+!/.claude/agents/
+!/.claude/skills/
+!/.claude/orchestrator/
+!/.claude/memory/
+/.claude/memory/session-log.md

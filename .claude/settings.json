@@ -1,0 +1,14 @@
+{
+    "hooks": {
+        "SessionStart": [
+            {
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "php -r \"@readfile('.claude/orchestrator/STATE.md');\""
+                    }
+                ]
+            }
+        ]
+    }
+}
