@@ -7,12 +7,9 @@
     <div x-data="variablesEditor" x-on:open-modal.window="handleOpen($event)" class="space-y-4">
         <template x-for="(row, index) in rows" :key="index">
             <div class="flex flex-wrap items-center gap-2 rounded-lg border border-gray-200 px-3 py-2 dark:border-white/10">
-                <input
-                    type="text"
-                    x-model="row.name"
-                    placeholder="nama_variabel"
-                    class="w-48 rounded-lg border-gray-300 bg-white text-sm shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:border-white/10 dark:bg-gray-800 dark:text-white"
-                />
+                <x-filament::input.wrapper class="w-48">
+                    <x-filament::input type="text" x-model="row.name" placeholder="nama_variabel" />
+                </x-filament::input.wrapper>
 
                 <span
                     class="text-xs"

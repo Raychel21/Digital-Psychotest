@@ -1,11 +1,13 @@
 {{-- text: isian bebas (tidak dinilai) --}}
 <div class="space-y-2">
-    <textarea
-        rows="5"
-        wire:model.live.debounce.750ms="state.text"
-        placeholder="Tulis jawaban Anda di sini..."
-        class="block w-full rounded-lg border-gray-300 text-sm shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-    ></textarea>
+    <x-filament::input.wrapper>
+        <textarea
+            rows="5"
+            wire:model.live.debounce.750ms="state.text"
+            placeholder="Tulis jawaban Anda di sini..."
+            class="fi-input block w-full resize-y border-none bg-transparent px-3 py-2 text-sm text-gray-950 outline-none placeholder:text-gray-400 dark:text-white"
+        ></textarea>
+    </x-filament::input.wrapper>
 
     <p class="text-xs text-gray-500 dark:text-gray-400">Jawaban tersimpan otomatis saat Anda berhenti mengetik.</p>
 </div>

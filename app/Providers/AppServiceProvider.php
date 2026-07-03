@@ -6,7 +6,10 @@ use App\Http\Responses\RoleBasedLoginResponse;
 use App\Http\Responses\UnifiedLogoutResponse;
 use Filament\Auth\Http\Responses\Contracts\LoginResponse;
 use Filament\Auth\Http\Responses\Contracts\LogoutResponse;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Select;
 use Filament\Schemas\Schema;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Support\ServiceProvider;
 
@@ -21,6 +24,18 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configureDateDisplayFormats();
+        $this->configureNonNativeControls();
+    }
+
+    /**
+     * Semua dropdown dan date picker memakai UI kustom Filament,
+     * bukan kontrol native browser, agar tampilan konsisten lintas OS.
+     */
+    private function configureNonNativeControls(): void
+    {
+        Select::configureUsing(fn (Select $select) => $select->native(false));
+        SelectFilter::configureUsing(fn (SelectFilter $filter) => $filter->native(false));
+        DatePicker::configureUsing(fn (DatePicker $picker) => $picker->native(false));
     }
 
     /**
