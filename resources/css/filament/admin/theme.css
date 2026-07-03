@@ -7,3 +7,4 @@
 @import '../base.css';
 
 @source '../../../../app/Filament/Resources/**/*';
+@source '../../../../resources/views/filament/admin/**/*';

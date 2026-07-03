@@ -7,6 +7,7 @@ use Filament\Auth\Http\Responses\Contracts\LoginResponse;
 use Filament\Facades\Filament;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Features\SupportRedirects\Redirector;
 
 /**
  * Satu pintu login: setelah autentikasi, arahkan pengguna
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
  */
 class RoleBasedLoginResponse implements LoginResponse
 {
-    public function toResponse($request): RedirectResponse
+    public function toResponse($request): RedirectResponse|Redirector
     {
         $role = Auth::user()?->role;
 
