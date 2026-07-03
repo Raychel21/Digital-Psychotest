@@ -8,6 +8,8 @@
                 <x-filament::input.wrapper :valid="! $errors->has('code')">
                     <x-filament::input
                         type="text"
+                        id="kode-undangan"
+                        name="code"
                         wire:model="code"
                         placeholder="Contoh: ABC-123-XYZ"
                         autocomplete="off"

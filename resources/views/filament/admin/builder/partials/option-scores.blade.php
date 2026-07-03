@@ -3,7 +3,6 @@
     use App\Filament\Resources\Assessments\Support\OptionScoresMapper;
 
     $isMostLeast = $question->type === QuestionType::MostLeast;
-    $selectClasses = 'w-full rounded-lg border-gray-300 bg-white py-1.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-white/10 dark:bg-gray-800 dark:text-white';
 @endphp
 
 @if (empty($dimensionOptions))
@@ -14,32 +13,34 @@
     <div class="grid gap-3 sm:grid-cols-2">
         <label class="flex flex-col gap-1">
             <span class="text-xs font-medium text-gray-500 dark:text-gray-400">Dimensi "Paling" (most)</span>
-            <select
-                x-on:change="$wire.updateOption({{ $option->id }}, { most_code: $event.target.value })"
-                class="{{ $selectClasses }}"
-            >
-                <option value="">— Tidak dinilai —</option>
-                @foreach ($dimensionOptions as $code => $label)
-                    <option value="{{ $code }}" @selected(OptionScoresMapper::mostCode($option->scores) === $code)>
-                        {{ $label }}
-                    </option>
-                @endforeach
-            </select>
+            <x-filament::input.wrapper>
+                <x-filament::input.select
+                    x-on:change="$wire.updateOption({{ $option->id }}, { most_code: $event.target.value })"
+                >
+                    <option value="">— Tidak dinilai —</option>
+                    @foreach ($dimensionOptions as $code => $label)
+                        <option value="{{ $code }}" @selected(OptionScoresMapper::mostCode($option->scores) === $code)>
+                            {{ $label }}
+                        </option>
+                    @endforeach
+                </x-filament::input.select>
+            </x-filament::input.wrapper>
         </label>
 
         <label class="flex flex-col gap-1">
             <span class="text-xs font-medium text-gray-500 dark:text-gray-400">Dimensi "Paling Tidak" (least)</span>
-            <select
-                x-on:change="$wire.updateOption({{ $option->id }}, { least_code: $event.target.value })"
-                class="{{ $selectClasses }}"
-            >
-                <option value="">— Tidak dinilai —</option>
-                @foreach ($dimensionOptions as $code => $label)
-                    <option value="{{ $code }}" @selected(OptionScoresMapper::leastCode($option->scores) === $code)>
-                        {{ $label }}
-                    </option>
-                @endforeach
-            </select>
+            <x-filament::input.wrapper>
+                <x-filament::input.select
+                    x-on:change="$wire.updateOption({{ $option->id }}, { least_code: $event.target.value })"
+                >
+                    <option value="">— Tidak dinilai —</option>
+                    @foreach ($dimensionOptions as $code => $label)
+                        <option value="{{ $code }}" @selected(OptionScoresMapper::leastCode($option->scores) === $code)>
+                            {{ $label }}
+                        </option>
+                    @endforeach
+                </x-filament::input.select>
+            </x-filament::input.wrapper>
         </label>
     </div>
 @else
@@ -49,20 +50,23 @@
     >
         <template x-for="(row, index) in rows" :key="index">
             <div class="flex items-center gap-2">
-                <select x-model="row.code" x-on:change="save()" class="{{ $selectClasses }} flex-1">
-                    <option value="">— Pilih dimensi —</option>
-                    @foreach ($dimensionOptions as $code => $label)
-                        <option value="{{ $code }}">{{ $label }}</option>
-                    @endforeach
-                </select>
+                <x-filament::input.wrapper class="flex-1">
+                    <x-filament::input.select x-model="row.code" x-on:change="save()">
+                        <option value="">— Pilih dimensi —</option>
+                        @foreach ($dimensionOptions as $code => $label)
+                            <option value="{{ $code }}">{{ $label }}</option>
+                        @endforeach
+                    </x-filament::input.select>
+                </x-filament::input.wrapper>
 
-                <input
-                    type="number"
-                    x-model="row.points"
-                    x-on:change="save()"
-                    placeholder="Poin"
-                    class="w-20 rounded-lg border-gray-300 bg-white py-1.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-white/10 dark:bg-gray-800 dark:text-white"
-                />
+                <x-filament::input.wrapper class="w-24">
+                    <x-filament::input
+                        type="number"
+                        x-model="row.points"
+                        x-on:change="save()"
+                        placeholder="Poin"
+                    />
+                </x-filament::input.wrapper>
 
                 <button
                     type="button"

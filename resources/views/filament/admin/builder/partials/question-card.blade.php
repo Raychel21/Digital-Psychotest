@@ -63,8 +63,7 @@
                 color="danger"
                 label="Hapus"
                 tooltip="Hapus"
-                wire:click="deleteQuestion({{ $question->id }})"
-                wire:confirm="Hapus soal ini beserta seluruh opsinya?"
+                x-on:click="$dispatch('builder-hapus-soal', { questionId: {{ $question->id }} })"
             />
         </div>
     </div>

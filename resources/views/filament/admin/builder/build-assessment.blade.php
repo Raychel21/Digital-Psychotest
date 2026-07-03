@@ -45,6 +45,37 @@
     @include('filament.admin.builder.partials.logic-modal')
     @include('filament.admin.builder.partials.variables-modal')
 
+    {{-- Konfirmasi hapus soal — satu modal dipakai semua kartu, menggantikan confirm() browser --}}
+    <div
+        x-data="{ hapusSoalId: null }"
+        x-on:builder-hapus-soal.window="hapusSoalId = $event.detail.questionId; $dispatch('open-modal', { id: 'builder-hapus-soal' })"
+    >
+        <x-filament::modal id="builder-hapus-soal" icon="heroicon-o-trash" icon-color="danger" width="md">
+            <x-slot name="heading">Hapus soal ini?</x-slot>
+
+            <x-slot name="description">
+                Seluruh opsi beserta aturan skornya ikut terhapus. Tindakan ini tidak bisa dibatalkan.
+            </x-slot>
+
+            <x-slot name="footerActions">
+                <x-filament::button
+                    color="gray"
+                    x-on:click="$dispatch('close-modal', { id: 'builder-hapus-soal' })"
+                >
+                    Batal
+                </x-filament::button>
+
+                <x-filament::button
+                    color="danger"
+                    icon="heroicon-o-trash"
+                    x-on:click="$wire.deleteQuestion(hapusSoalId); $dispatch('close-modal', { id: 'builder-hapus-soal' })"
+                >
+                    Ya, hapus soal
+                </x-filament::button>
+            </x-slot>
+        </x-filament::modal>
+    </div>
+
     {{-- Indikator simpan otomatis --}}
     <div
         x-data="{ visible: false, timer: null }"

@@ -8,6 +8,8 @@
 | ini otomatis mengikuti aksen indigo / rose / emerald tanpa duplikasi.
 */
 
+@import '../chrome.css';
+
 @theme {
     /* Inter dengan fallback system stack — tanpa CDN eksternal */
     --font-sans:

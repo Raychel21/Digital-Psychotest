@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import './chrome.css';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -8,4 +9,12 @@
 @theme {
     --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
         'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/* Fokus keyboard di landing: cincin emerald, tanpa outline native */
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid rgb(16 185 129 / 0.7);
+    outline-offset: 3px;
+    border-radius: 0.5rem;
 }

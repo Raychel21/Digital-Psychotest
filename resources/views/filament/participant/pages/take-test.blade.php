@@ -122,13 +122,40 @@
                 <x-filament::button
                     color="success"
                     icon="heroicon-o-paper-airplane"
-                    wire:click="submit"
-                    wire:confirm="Yakin ingin mengumpulkan jawaban? Jawaban tidak dapat diubah setelah dikumpulkan."
+                    x-on:click="$dispatch('open-modal', { id: 'konfirmasi-kumpulkan' })"
                 >
                     Kumpulkan Jawaban
                 </x-filament::button>
             @endif
         </div>
+
+        {{-- Konfirmasi pengumpulan menggantikan dialog confirm() bawaan browser --}}
+        <x-filament::modal id="konfirmasi-kumpulkan" icon="heroicon-o-paper-airplane" icon-color="success" width="md">
+            <x-slot name="heading">Kumpulkan jawaban sekarang?</x-slot>
+
+            <x-slot name="description">
+                Setelah dikumpulkan, jawaban tidak bisa diubah lagi dan hasil langsung dinilai.
+            </x-slot>
+
+            <x-slot name="footerActions">
+                <x-filament::button
+                    color="gray"
+                    x-on:click="$dispatch('close-modal', { id: 'konfirmasi-kumpulkan' })"
+                >
+                    Periksa dulu
+                </x-filament::button>
+
+                <x-filament::button
+                    color="success"
+                    icon="heroicon-o-paper-airplane"
+                    wire:click="submit"
+                    wire:loading.attr="disabled"
+                    x-on:click="$dispatch('close-modal', { id: 'konfirmasi-kumpulkan' })"
+                >
+                    Ya, kumpulkan
+                </x-filament::button>
+            </x-slot>
+        </x-filament::modal>
     @else
         <x-filament::section>
             <p class="text-sm text-gray-600 dark:text-gray-300">Asesmen ini belum memiliki soal.</p>

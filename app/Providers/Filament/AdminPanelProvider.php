@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\AvatarProviders\InitialsAvatarProvider;
 use App\Http\Middleware\RedirectToUnifiedLogin;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -28,6 +29,8 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->spa()
             ->brandName('Psychotest Admin')
+            ->favicon(asset('favicon.svg'))
+            ->defaultAvatarProvider(InitialsAvatarProvider::class)
             ->colors([
                 'primary' => Color::Indigo,
             ])

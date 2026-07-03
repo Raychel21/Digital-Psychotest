@@ -7,6 +7,8 @@
 
         <title>Psychotest — Platform Tes Psikologi Online</title>
 
+        <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+
         @vite(['resources/css/app.css'])
     </head>
     <body class="bg-white text-slate-800 antialiased dark:bg-slate-950 dark:text-slate-200">
