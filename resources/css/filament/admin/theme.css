@@ -1,0 +1,9 @@
+/*
+| Tema panel Admin — aksen indigo (diatur via Color::Indigo di provider).
+| Estetika dasar bersama ada di resources/css/filament/base.css.
+*/
+
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+@import '../base.css';
+
+@source '../../../../app/Filament/Resources/**/*';
